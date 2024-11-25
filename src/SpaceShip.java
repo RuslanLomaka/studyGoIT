@@ -1,36 +1,40 @@
-class Tanker{
-    private String serialNumber;
+abstract class Passenger {
+    public abstract String getType() ;
 
-    public String getSerialNumber() {
-        return serialNumber;
-    }
-
-    public void setSerialNumber(String serialNumber) {
-        this.serialNumber = serialNumber;
-    }
-    protected String getFuelType(){
-        return "A500";
-    }
-    public void refuel(int amount){
-        System.out.println("Add "+amount+" of "+this.getFuelType()+", tanker serial number is "+this.serialNumber);
-    }
+    public abstract int  getTicketPrice() ;
 
     public static void main(String[] args) {
-        Tanker tanker = new Tanker();
-        tanker.setSerialNumber("SN504030");
-        tanker.refuel(300);
+        Passenger regular = new RegularPassenger();
+        System.out.println(regular.getType()); //Regular
+        System.out.println(regular.getTicketPrice()); //199
+
+        Passenger vip = new VIPPassenger();
+        System.out.println(vip.getType());  //VIP
+        System.out.println(vip.getTicketPrice()); //399
+    }
+}
+
+class RegularPassenger extends Passenger{
+
+    @Override
+    public String getType() {
+        return "Regular";
     }
 
-}
-class XFuelTanker extends Tanker{
     @Override
-    protected String getFuelType(){
-        return "XFuel";
+    public int getTicketPrice() {
+        return 199;
     }
 }
-class MX200Tanker extends Tanker{
+class VIPPassenger extends Passenger{
+
     @Override
-    protected String getFuelType(){
-        return "MX200";
+    public String getType() {
+        return "VIP";
+    }
+
+    @Override
+    public int getTicketPrice() {
+        return 399;
     }
 }
