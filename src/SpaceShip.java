@@ -1,50 +1,59 @@
-public class SpaceShip {
- private String name;
- private String serialNumber;
+class SpaceRocketLauncher{
+ private int bigRocketCount;//кількість великих ракет
+ private int smallRocketCount;//кількість маленьких ракет
 
- public String getName() {
-  return name;
+
+
+    public int getBigRocketCount() {
+        return bigRocketCount;
+    }
+
+    public void setBigRocketCount(int bigRocketCount) {
+       if( 0>bigRocketCount||bigRocketCount>100 ){return;}
+       this.bigRocketCount = bigRocketCount;
+    }
+
+    public int getSmallRocketCount() {
+        return smallRocketCount;
+    }
+
+    public void setSmallRocketCount(int smallRocketCount) {
+     if( 0>smallRocketCount||smallRocketCount>100 ){return;}
+        this.smallRocketCount = smallRocketCount;
+    }
+
+ public int getTotalPower(){/* Цей метод рахує загальну вогневу міць ракетної установки з розрахунку, що кожна велика  ракета, що залишилася, дає 100 одиниць міці, кожна маленька ракета - 50 одиниць міці.*/
+
+     return this.bigRocketCount*100+this.smallRocketCount*50;
  }
 
- public void setName(String name) {
-  if (name.isBlank() || name.length() > 100) {
-   return;
-  }
+    public void launchBigRocket() {
+        if(this.getBigRocketCount()<0) return;
+        --this.bigRocketCount;
+    }
+    public void launchSmallRocket() {
+        if(this.getSmallRocketCount()<0) return;
+        --this.smallRocketCount;
+    }
 
-  this.name = name;
- }
-
- public String getSerialNumber() {
-  return serialNumber;
- }
-
- public void setSerialNumber(String serialNumber) {
-  if (serialNumber.length() != 8) {
-   return;
-  }
-
-  if (!serialNumber.startsWith("SN")) {
-   return;
-  }
-
-  this.serialNumber = serialNumber;
- }
-
- public void printInfo() {
-  System.out.println("Name is "+ this.getName()+", serial number is "+ this.getSerialNumber());
- }
-
-
-
-
- //Test output
  public static void main(String[] args) {
-  SpaceShip ship = new SpaceShip();
+     SpaceRocketLauncher launcher = new SpaceRocketLauncher();
+     launcher.setBigRocketCount(5);
+     launcher.setSmallRocketCount(10);
 
-  ship.setName("Voyager");
-  ship.setSerialNumber("SN506788");
+     System.out.println("Power is " + launcher.getTotalPower());
 
-  //Name is Voyager, serial number is SN504030
-  ship.printInfo();
+     launcher.launchBigRocket();
+     System.out.println("Big rocket count is " + launcher.getBigRocketCount());
+
+     launcher.launchSmallRocket();
+     System.out.println("Small rocket count is " + launcher.getSmallRocketCount());
+
+     System.out.println("Power is " + launcher.getTotalPower());
+
  }
+
+
+
+
 }
