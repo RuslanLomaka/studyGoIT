@@ -1,40 +1,43 @@
-abstract class Passenger {
-    public abstract String getType() ;
-
-    public abstract int  getTicketPrice() ;
+class LaunchCalculator {
+    public int calculateTotalPrice(Spaceport spaceport, int passengerCount) {
+        return spaceport.calculateTotalPrice(passengerCount);
+    }
 
     public static void main(String[] args) {
-        Passenger regular = new RegularPassenger();
-        System.out.println(regular.getType()); //Regular
-        System.out.println(regular.getTicketPrice()); //199
+        LaunchCalculator calculator = new LaunchCalculator();
 
-        Passenger vip = new VIPPassenger();
-        System.out.println(vip.getType());  //VIP
-        System.out.println(vip.getTicketPrice()); //399
+        int jupiterStarPrice = calculator.calculateTotalPrice(new JupiterStar(), 100);
+        System.out.println("JupiterStar price = " + jupiterStarPrice); //700
+
+        int mercuryBeatPrice = calculator.calculateTotalPrice(new MercuryBeat(), 100);
+        System.out.println("MercuryBeat price = " + mercuryBeatPrice); //1500
+
+        int sunHeavenPrice = calculator.calculateTotalPrice(new SunHeaven(), 100);
+        System.out.println("SunHeaven price = " + sunHeavenPrice); //2000
     }
 }
 
-class RegularPassenger extends Passenger{
+abstract class Spaceport {
+    public abstract int calculateTotalPrice(int passengerCount);
+}
 
+class JupiterStar extends Spaceport{
     @Override
-    public String getType() {
-        return "Regular";
-    }
-
-    @Override
-    public int getTicketPrice() {
-        return 199;
+    public int calculateTotalPrice(int passengerCount) {
+        return 500+2*passengerCount;
     }
 }
-class VIPPassenger extends Passenger{
 
+class MercuryBeat extends Spaceport{
     @Override
-    public String getType() {
-        return "VIP";
+    public int calculateTotalPrice(int passengerCount) {
+        return 15*passengerCount;
     }
+}
 
+class SunHeaven  extends Spaceport{
     @Override
-    public int getTicketPrice() {
-        return 399;
+    public int calculateTotalPrice(int passengerCount) {
+        return 2000;
     }
 }
