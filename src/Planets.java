@@ -1,27 +1,9 @@
-public  class Planets {
-    public static final String MERCURY = "Mercury";
-    public static final String VENUS = "Venus";
-    public static final String EARTH = "Earth";
-    public static final String MARS = "Mars";
-    public static final String JUPITER = "Jupiter";
-    public static final String SATURN = "Saturn";
-    public static final String URANUS = "Uranus";
-    public static final String NEPTUNE = "Neptune";
+class SpaceportMessages{
+    public static String generateLandingMessage(String shipName, String spaceport, String time){
+        return "Spaceship "+shipName+" landing at "+spaceport+", time is "+time;
+    }
 
-
-        public static void main (String[] args) {
-            Planets Planets = new Planets();
-            System.out.println("The planets are:");
-            System.out.println(Planets.MERCURY);
-            System.out.println(Planets.VENUS);
-            System.out.println(Planets.EARTH);
-            System.out.println(Planets.MARS);
-            System.out.println(Planets.JUPITER);
-            System.out.println(Planets.SATURN);
-            System.out.println(Planets.URANUS);
-            System.out.println(Planets.NEPTUNE);
-
-
-}
-
+    public static void main(String[] args) {
+        System.out.println(SpaceportMessages.generateLandingMessage("SunFlower", "EarthKeeper", "20:40"));
+    }
 }
