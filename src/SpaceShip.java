@@ -28,11 +28,13 @@ class SpaceRocketLauncher{
  }
 
     public void launchBigRocket() {
-        if(this.getBigRocketCount()<0) return;
+        if(this.getBigRocketCount()==0) return;
+        System.out.println("Launch big rocket");
         --this.bigRocketCount;
     }
     public void launchSmallRocket() {
-        if(this.getSmallRocketCount()<0) return;
+        if(this.getSmallRocketCount()==0) return;
+        System.out.println("Launch small rocket");
         --this.smallRocketCount;
     }
 
