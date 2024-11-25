@@ -1,9 +1,21 @@
-class SpaceportMessages{
-    public static String generateLandingMessage(String shipName, String spaceport, String time){
-        return "Spaceship "+shipName+" landing at "+spaceport+", time is "+time;
+class SpaceUtils{
+   public static final int PLANET_COUNT=8;
+   public static final String HOME_PLANET_NAME="Earth";
+   public static final String HOME_STAR_NAME="Sun";
+
+
+    public static String pluralPlanets(int planetCount){
+
+        if (planetCount==1) return "1 planet";
+        return planetCount+" planets";
     }
 
-    public static void main(String[] args) {
-        System.out.println(SpaceportMessages.generateLandingMessage("SunFlower", "EarthKeeper", "20:40"));
+    public static String generateStartMessage(String shipName, String time){
+
+        return "Ship "+shipName+" start at "+time;
     }
+    public static void main(String[] args) {
+        System.out.println(SpaceUtils.generateStartMessage("Earthkeeper", "20:40"));
+    }
+
 }
