@@ -1,68 +1,33 @@
-import java.util.*;
+import java.util.Arrays;
 
-public class HarekCity {
-    public String[] createEmptyNameArray() {
-        String[] result = new String[0];
-        return result;
+class HarekDataMaker{
+
+
+    public String aggregateSingle(String name, String age, String planet){
+        return "name - "+name+", age - "+age+", planet - "+planet;
     }
 
-    public int[] createAgeArray(int age1, int age2, int age3, int age4) {
-        return new int[] {age1, age2, age3, age4};
+    public String[] aggregateAll(String[] names, int[] ages, String[] planets){
+        String[] data =new String[names.length] ;
+
+        for(int i=0; i<names.length;i++){
+            data[i]= aggregateSingle(names[i], String.valueOf(ages[i]),planets[i]);
+        }
+        return  data;
     }
 
-    public void fixNames(String[] names, String[] toReplace) {
-        names[1] = toReplace[0];
-        names[3] = toReplace[1];
-    }
-
-    public String firstAndLastTogether(String[] names) {
-        return names[0] + " AND " + names[9] + " TOGETHER";
-    }
-
-    public void changeElectResult(String[] results) {
-        String temp = results[0];
-        results[0] = results[results.length - 1];
-        results[results.length - 1] = temp;
-    }
-
-    public String[] changeElectResultAgain(String[] results) {
-        return new String[] {
-                results[2],
-                results[3],
-                results[4]
-        };
-    }
-
-    public char[][] createKeyboard() {
-        return new char[][]  {
-                {'1', '2', '3'},
-                {'4', '5', '6'},
-                {'7', '8', '9'},
-                {'*', '0', '#'}
-        };
-    }
-
-    public void printKeyboard() {
-        char[][] keyboard = createKeyboard();
-
-        System.out.println(Arrays.toString(keyboard[0]));
-        System.out.println(Arrays.toString(keyboard[1]));
-        System.out.println(Arrays.toString(keyboard[2]));
-        System.out.println(Arrays.toString(keyboard[3]));
-    }
-    public String[] makeCopy(String[] source) {
-        String[] copy = Arrays.copyOf(source,source.length);
-        System.out.println("Copied!");
-        return copy;
-    }
 
     public static void main(String[] args) {
-        String[] source = new String[] {"Hero", "Mihu"};
-        String[] copy = new HarekCity().makeCopy(source);
+        String[] names = new String[] {"hter", "pou", "diz"};
+        int[] ages = new int[] {30, 35, 70};
+        String[] planets = new String[] {"Mars", "Earth", "Jupiter"};
 
-        source[0] = "CHANGED!"; //Мы меняем исходный массив, но на копии это не отображается
+        HarekDataMaker harekDataMaker = new HarekDataMaker();
 
-        System.out.println(Arrays.toString(copy));
+        System.out.println(harekDataMaker.aggregateSingle(names[0], Integer.toString(ages[0]), planets[0]));
+        System.out.println("###");
+
+        System.out.println(Arrays.toString(harekDataMaker.aggregateAll(names, ages, planets)));
     }
 }
 
