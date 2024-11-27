@@ -1,6 +1,3 @@
-import org.w3c.dom.ls.LSOutput;
-
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class HarekCity {
@@ -37,23 +34,35 @@ public class HarekCity {
     }
 
     public char[][] createKeyboard() {
-        return new char[][]{
+        return new char[][]  {
                 {'1', '2', '3'},
                 {'4', '5', '6'},
                 {'7', '8', '9'},
                 {'*', '0', '#'}
         };
     }
-    public void printKeyboard () {
-        char[][] keyboard;
-        keyboard = createKeyboard();
+
+    public void printKeyboard() {
+        char[][] keyboard = createKeyboard();
+
         System.out.println(Arrays.toString(keyboard[0]));
         System.out.println(Arrays.toString(keyboard[1]));
         System.out.println(Arrays.toString(keyboard[2]));
         System.out.println(Arrays.toString(keyboard[3]));
-
     }
+    public String[] makeCopy(String[] source) {
+        String[] copy = Arrays.copyOf(source,source.length);
+        System.out.println("Copied!");
+        return copy;
+    }
+
     public static void main(String[] args) {
-        new HarekCity().printKeyboard();
+        String[] source = new String[] {"Hero", "Mihu"};
+        String[] copy = new HarekCity().makeCopy(source);
+
+        source[0] = "CHANGED!"; //Мы меняем исходный массив, но на копии это не отображается
+
+        System.out.println(Arrays.toString(copy));
     }
 }
+
