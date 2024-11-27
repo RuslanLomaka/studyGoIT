@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class SaveStarShip {
 
@@ -18,12 +19,13 @@ public class SaveStarShip {
         else return "Pern";
     }
 
-    private static final int STAR100_PRICE = 70;
-    private static final int STAR500_PRICE = 120;
-    private static final int STAR1000_PRICE = 200;
-    private static final int DEFAULT_PRICE = 50;
-
     public int calculateFuelPrice(String fuel, int count) {
+        final int STAR100_PRICE = 70;
+        final int STAR500_PRICE = 120;
+        final int STAR1000_PRICE = 200;
+        final int DEFAULT_PRICE = 50;
+
+
         if ("STAR100".equals(fuel)) return count * STAR100_PRICE;
         if ("STAR500".equals(fuel)) return count * STAR500_PRICE;
         if ("STAR1000".equals(fuel)) return count * STAR1000_PRICE;
@@ -35,29 +37,45 @@ public class SaveStarShip {
     }
 
     public int calculateNeededFuel(int distance){
-        if(distance<=20)return 1000;
-        return 1000+(distance-20)*5;
+        final int BASE_FUEL = 1000;//amount need to be used for starting engine, can also travel 20 l.y. on this fuel without using more
+        if(distance<=20)return BASE_FUEL;
+        return BASE_FUEL+(distance-20)*5;//each 1 l.y.over amount of 20 needs to spend 5 units of fuel to travel
+    }
+
+    public void calculateMaxPower(){
+
+        //reading power data from user
+        Scanner scanner = new Scanner(System.in);
+        int power1 = scanner.nextInt();
+        int power2 = scanner.nextInt();
+        int power3 = scanner.nextInt();
+        scanner.close();
+
+        //choosing maximal power
+        int maxPower=power1;
+        if (power2>maxPower) maxPower=power2;
+        if (power3>maxPower) maxPower=power3;
+
+        //setting up the power constants
+        final float COEFF_SMALL = 0.7f;
+        final float COEFF_MEDIUM = 1.2f;
+        final float COEFF_LARGE = 2.1f;
+
+        //calculating output according to the algorithm with proper coefficients
+        float realPower = (float) maxPower*COEFF_SMALL;
+        if (maxPower>10) realPower= (float) maxPower*COEFF_MEDIUM;
+        if (maxPower>100) realPower = (float) maxPower * COEFF_LARGE;
+        System.out.println(realPower);
     }
 
     public static void main(String[] args) {
         SaveStarShip ship = new SaveStarShip();
-
-        //Should be 10
-        System.out.println(ship.calculateDistance(-10));
-
-        //Should be [Fobius, Demius]
-        System.out.println(Arrays.toString(ship.getPlanets("DangerBanger")));
-
-        //Should be Earth
-        System.out.println(ship.choosePlanet(10));
-
-        //Should be 700
-        System.out.println(ship.calculateFuelPrice("STAR100", 10));
-
-        //Should be 60
-        System.out.println(ship.roundSpeed(55));
-
-        //Should be 1005
-        System.out.println(ship.calculateNeededFuel(20));
+        System.out.println(ship.calculateDistance(-10));//Should be 10
+        System.out.println(Arrays.toString(ship.getPlanets("DangerBanger")));//Should be [Fobius, Demius]
+        System.out.println(ship.choosePlanet(10));//Should be Earth
+        System.out.println(ship.calculateFuelPrice("STAR100", 10));//Should be 700
+        System.out.println(ship.roundSpeed(55)); //Should be 60
+        System.out.println(ship.calculateNeededFuel(1001));//Should be 1005
+        ship.calculateMaxPower();
     }
 }
