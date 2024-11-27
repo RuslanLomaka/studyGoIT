@@ -1,3 +1,6 @@
+import org.w3c.dom.ls.LSOutput;
+
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class HarekCity {
@@ -34,30 +37,23 @@ public class HarekCity {
     }
 
     public char[][] createKeyboard() {
-             char[][] keyboard= new char[4][3];
-                keyboard[0][0]='1';
-                keyboard[0][1]='2';
-                keyboard[0][2]='3';
-                keyboard[1][0]='4';
-                keyboard[1][1]='5';
-                keyboard[1][2]='6';
-                keyboard[2][0]='7';
-                keyboard[2][1]='8';
-                keyboard[2][2]='9';
-                keyboard[3][0]='*';
-                keyboard[3][1]='0';
-                keyboard[3][2]='#';
-
-        return keyboard;
-
+        return new char[][]{
+                {'1', '2', '3'},
+                {'4', '5', '6'},
+                {'7', '8', '9'},
+                {'*', '0', '#'}
+        };
+    }
+    public void printKeyboard () {
+        char[][] keyboard;
+        keyboard = createKeyboard();
+        System.out.println(Arrays.toString(keyboard[0]));
+        System.out.println(Arrays.toString(keyboard[1]));
+        System.out.println(Arrays.toString(keyboard[2]));
+        System.out.println(Arrays.toString(keyboard[3]));
 
     }
     public static void main(String[] args) {
-        char[][] keyboard = new HarekCity().createKeyboard();
-        for (int i = 0; i < keyboard.length; i++) {
-            System.out.println(Arrays.toString(keyboard[i]));
-        }
+        new HarekCity().printKeyboard();
     }
-
-
 }
