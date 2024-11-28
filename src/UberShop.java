@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class UberShop {
     public void printPrices(float[] prices) {
         for(float price: prices)
@@ -55,11 +57,84 @@ public class UberShop {
         return anountOfMinPrices;
     }
 
-    public static void main(String[] args) {
-        UberShop shop = new UberShop();
+    public int[] removePrice(int[] prices, int toRemove){
 
-        //Should be [50, 1500]
-        int[] prices = new int[] {100, 1500, 300, 50, 10, 10, 70,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
-        System.out.println(shop.getMinPriceCount(prices)); //Should be 2
+        int a=0;//how many elements to remove
+        for(int price : prices){
+            if(price==toRemove) a++;
+        }
+
+        int[] editedPrices = new int[prices.length-a];// new array to return
+
+        int j = 0;//pointer for editedPrices
+        for (int price : prices) {
+            //int j = 0;//pointer for editedPrices was declared in loop by mistake
+            if (!(price == toRemove)) {
+                editedPrices[j] = price;
+                j++; //move pointer after adding new element to editedPrices
+            }
+        }
+
+        return editedPrices;
     }
+
+    public int[] leavePrice9(int[] prices){
+        int howMany9s =0;
+            for (int price :prices){
+               if(price%10==9){ //if last digit is 9
+               howMany9s++;     //incr size of return array
+               }
+            }
+
+        int[] prices9 = new int[howMany9s];//declaring array to return with proper size
+
+        int i=0;
+        for(int price:prices){
+            if(price%10==9){//if last digit of price is 9
+                prices9[i]=price;//copy it to return array
+                i++;
+            }
+        }
+
+        return prices9;
+    }
+    public String[] mergeStocks(String[] showcaseStocks, String[] warehouseStocks){
+
+        String [] mergedStock = new String[showcaseStocks.length+warehouseStocks.length];
+        int i=0;
+
+        for (String stockItem:showcaseStocks) {
+           mergedStock [i] = stockItem ;
+           i++;
+        }
+
+        for (String stockItem:warehouseStocks){
+            mergedStock[i] = stockItem;
+            i++;
+        }
+
+        return mergedStock;
+    }
+
+    public int getPricesSum(int[] prices, int minPrice, int maxPrice){
+        int summ=0;
+        for(int price:prices){
+            if(price>=minPrice && price<=maxPrice){
+                summ+=price;
+            }
+        }
+        return summ;
+    }
+
+    //Test output
+
+    public static void main(String[] args) {
+            UberShop shop = new UberShop();
+
+            //Final result should be ["gun", "firebow", "firegun"]
+            String[] showcaseStocks = new String[] {"gun", "firebow"};
+            String[] warehouseStocks = new String[] {"firegun"};
+            System.out.println(Arrays.toString(shop.mergeStocks(showcaseStocks, warehouseStocks)));
+    }
+
 }
