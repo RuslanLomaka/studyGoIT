@@ -68,14 +68,37 @@ public class SaveStarShip {
         System.out.println(realPower);
     }
 
+    public String getMyPrizes(int ticket){
+        String prize = "";
+        if(ticket%10==0) prize += "crystall";
+        if(ticket%10==7) prize += " chip";
+        if(ticket>200) prize += " coin";
+        return prize;
+    }
+
+    public boolean isHangarOk (int side1, int side2, int price){
+        int area =  side1*side2;
+        int pricePerSqMetr = price/area;
+        int bigSide = Math.max(side1,side2);
+        int smallSide = Math.min(side1,side2);
+          boolean ratioIsOk = !(bigSide -2 * smallSide > 0);
+        boolean pricePerSqMtrIsOk = pricePerSqMetr<=1000;
+        boolean areaIsOk = area>=1500;
+        return ratioIsOk && pricePerSqMtrIsOk && areaIsOk;
+    }
+
+
     public static void main(String[] args) {
         SaveStarShip ship = new SaveStarShip();
-        System.out.println(ship.calculateDistance(-10));//Should be 10
-        System.out.println(Arrays.toString(ship.getPlanets("DangerBanger")));//Should be [Fobius, Demius]
-        System.out.println(ship.choosePlanet(10));//Should be Earth
-        System.out.println(ship.calculateFuelPrice("STAR100", 10));//Should be 700
+        System.out.println(ship.calculateDistance(-10));  //Should be 10
+        System.out.println(Arrays.toString(ship.getPlanets("DangerBanger"))); //Should be [Fobius, Demius]
+        System.out.println(ship.choosePlanet(10)); //Should be Earth
+        System.out.println(ship.calculateFuelPrice("STAR100", 10)); //Should be 700
         System.out.println(ship.roundSpeed(55)); //Should be 60
-        System.out.println(ship.calculateNeededFuel(1001));//Should be 1005
-        ship.calculateMaxPower();
+        System.out.println(ship.calculateNeededFuel(1001)); //Should be 1005
+        ship.calculateMaxPower(); //Test stdin data - 1 3 5.Console ouput should be 3.5
+        System.out.println(ship.getMyPrizes(54)); //Should be "crystall coin"
+        System.out.println(ship.isHangarOk(53, 104, 5512000 ));//Should be true
     }
+
 }
