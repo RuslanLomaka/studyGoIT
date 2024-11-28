@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class CaptainDisputeAgain {
     public int findMin(int[] triple){
         return Integer.min(Integer.min(triple[0],triple[1]), triple[2]);
