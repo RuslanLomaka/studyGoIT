@@ -1,5 +1,3 @@
-import java.util.*;
-
 public class UberShop {
     public void printPrices(float[] prices) {
         for(float price: prices)
@@ -57,9 +55,6 @@ public class UberShop {
         return anountOfMinPrices;
     }
 
-
-
-
     public static void main(String[] args) {
         UberShop shop = new UberShop();
 
@@ -67,4 +62,4 @@ public class UberShop {
         int[] prices = new int[] {100, 1500, 300, 50, 10, 10, 70,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
         System.out.println(shop.getMinPriceCount(prices)); //Should be 2
     }
-}4
+}
