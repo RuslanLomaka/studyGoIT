@@ -36,24 +36,35 @@ public class UberShop {
         return new int[]{minPrice,maxPrice};
     }
 
-    //Test output
+    public int getMinPriceCount(int[] prices){
+        if (prices.length==0) return 0;
+
+        int minPrice= Integer.MAX_VALUE;
+
+        for (int price : prices) {
+
+            if (price < minPrice) {
+                minPrice = price;
+            }
+        }
+
+        int anountOfMinPrices =0;
+
+            for (int price1 : prices){
+                if(price1==minPrice) anountOfMinPrices++;
+            }
+
+        return anountOfMinPrices;
+    }
+
+
+
+
     public static void main(String[] args) {
         UberShop shop = new UberShop();
 
         //Should be [50, 1500]
-        int[] prices = new int[] {100, 1500, 300, 50};
-        int[] prices1= new int[] {10, 50, 3, 1550};
-        int[] prices2= new int[] {50,50};
-        int[] prices3= new int[] {};
-
-        int[] minMax = shop.findMinMaxPrices(prices);
-        int[] minMax1 = shop.findMinMaxPrices(prices1);
-        int[] minMax2 = shop.findMinMaxPrices(prices2);
-        int[] minMax3 = shop.findMinMaxPrices(prices3);
-
-        System.out.println(Arrays.toString(minMax));
-        System.out.println(Arrays.toString(minMax1));
-        System.out.println(Arrays.toString(minMax2));
-        System.out.println(Arrays.toString(minMax3));
+        int[] prices = new int[] {100, 1500, 300, 50, 10, 10, 70,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
+        System.out.println(shop.getMinPriceCount(prices)); //Should be 2
     }
-}
+}4
