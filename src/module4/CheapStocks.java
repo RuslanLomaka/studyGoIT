@@ -1,3 +1,5 @@
+package module4;
+
 public class CheapStocks {
 
     public String getCheapStocks(String[] stocks){

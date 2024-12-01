@@ -1,3 +1,5 @@
+package module4;
+
 public class CaptainDispute {
     public String evenOrOdd(int number) {
         return (number % 2 == 0) ? "even" : "odd";

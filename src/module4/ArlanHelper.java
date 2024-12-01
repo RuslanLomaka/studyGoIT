@@ -1,3 +1,5 @@
+package module4;
+
 public class ArlanHelper {
 
     public String drawQuad(int n){

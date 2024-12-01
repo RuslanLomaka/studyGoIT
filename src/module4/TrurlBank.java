@@ -1,3 +1,5 @@
+package module4;
+
 public class TrurlBank {
 
     public int sumQuads(int n){
