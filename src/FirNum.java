@@ -16,6 +16,17 @@ class FirNumSum extends FirNum{
     }
 }
 
+class FirNumFactorial extends FirNum{
+    @Override
+    public int calc(int number){
+        int result =1;
+        for(int i=number;i>0;i--){
+            result *=i;
+        }
+        return result;
+    }
+}
+
 
 
 class FirTest {
@@ -24,10 +35,10 @@ class FirTest {
     }
 
     public static void main(String[] args) {
-        FirNum firNum = new FirNumSum();
+        FirNum firNum = new FirNumFactorial();
         FirTest firTest = new FirTest();
 
-        //Should be 6
-        System.out.println(firTest.test(firNum, 3));
+        //Should be 120
+        System.out.println(firTest.test(firNum, 5));
     }
 }
