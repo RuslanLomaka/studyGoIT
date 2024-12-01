@@ -1,4 +1,6 @@
- class Altimeter {
+package module5;
+
+class Altimeter {
 
 
 

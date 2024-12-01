@@ -1,3 +1,5 @@
+package module5;
+
 class FirNum{
 
     public int calc(int number) {

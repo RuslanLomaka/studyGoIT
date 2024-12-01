@@ -1,4 +1,6 @@
-    public class Stars {
+package module5;
+
+public class Stars {
 
         private int count;
         public int getCount() {

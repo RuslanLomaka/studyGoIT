@@ -1,3 +1,5 @@
+package module5;
+
 abstract class SpaceObject {
 }
 

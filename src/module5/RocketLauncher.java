@@ -1,3 +1,5 @@
+package module5;
+
 class RocketLauncher {
     private String size;
     private int rocketCount;
