@@ -19,11 +19,20 @@ class RectangleTest {
 }
 
 class Rectangle{
-    public Rectangle(int a, int b){
+    private int bigSide;
+    private int smallSide;
 
+    public Rectangle(int a, int b){
+           if(a>b){
+            bigSide = a;
+            smallSide = b;
+        } else {
+            bigSide = b;
+            smallSide = a;
+        }
     }
 
     public boolean canPlaceInto(Rectangle anotherRect){
-        return true;
+           return (this.bigSide<=anotherRect.bigSide)&&(this.smallSide<=anotherRect.smallSide);
     }
 }
